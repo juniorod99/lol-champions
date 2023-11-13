@@ -4,6 +4,8 @@
   padding-right: 20px;
   display: flex;
   flex-wrap: wrap;
+  /* display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
   align-items: center;
   justify-content: center;
   gap: 40px 20px;

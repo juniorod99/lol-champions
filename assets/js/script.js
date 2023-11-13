@@ -6,10 +6,11 @@ const getChampions = async () => {
     "https://ddragon.leagueoflegends.com/cdn/13.22.1/data/pt_BR/champion.json";
   const response = await fetch(url);
   const data = await response.json();
-  const champs = await data.data;
-  totalChampions = await Object.keys(data.data).length;
+  const champs = data.data;
+  // await fetchChampions(champs);
+  totalChampions = Object.keys(data.data).length;
   for (var chave in champs) {
-    createChampionCard(champs[chave]);
+    await createChampionCard(champs[chave]);
   }
 };
 
@@ -17,23 +18,66 @@ const createChampionCard = (champion) => {
   const card = document.createElement("div");
   card.classList.add("champion");
 
-  const name = champion.id;
+  var name = champion.id;
+  name = separarPalavrasPorMaiuscula(name);
   const icon = `https://ddragon.leagueoflegends.com/cdn/13.22.1/img/champion/${champion.image.full}`;
-  const role = champion.tags;
-  // console.log(role);
+  var roles = champion.tags;
+  roles = juntarRole(traduzRoles(roles));
 
   const championInnerHTML = `
   <div class="champion-icon">
-    <img class="icon" src="https://ddragon.leagueoflegends.com/cdn/13.22.1/img/champion/${champion.image.full}" alt="${champion.id}">
+    <img class="icon" src="${icon}" alt="${champion.id}">
   </div>
   <div class="champion-info">
-    <h2 class="name">${champion.id}</h2>
-    <p class="type">Mago, Assassino</p>
+    <h2 class="name">${name}</h2>
+    <p class="type">${roles}</p>
   </div>
   `;
 
   card.innerHTML = championInnerHTML;
   container.appendChild(card);
 };
+
+function separarPalavrasPorMaiuscula(name) {
+  var palavras = name.split(/(?=[A-Z])/);
+  var resultado = palavras.join(" ");
+  return resultado;
+}
+
+function traduzRoles(roles) {
+  for (var role in roles) {
+    if (roles[role] === "Marksman") {
+      roles[role] = "Atirador";
+    } else if (roles[role] === "Assassin") {
+      roles[role] = "Assassino";
+    } else if (roles[role] === "Support") {
+      roles[role] = "Suporte";
+    } else if (roles[role] === "Mage") {
+      roles[role] = "Mago";
+    } else if (roles[role] === "Fighter") {
+      roles[role] = "Lutador";
+    }
+  }
+  return roles;
+}
+
+function juntarRole(roles) {
+  // for (var role in roles) {
+  //   if (roles[role] === "Marksman") {
+  //     roles[role] = "Atirador";
+  //   } else if (roles[role] === "Assassin") {
+  //     roles[role] = "Assassino";
+  //   } else if (roles[role] === "Support") {
+  //     roles[role] = "Suporte";
+  //   } else if (roles[role] === "Mage") {
+  //     roles[role] = "Mago";
+  //   } else if (roles[role] === "Fighter") {
+  //     roles[role] = "Lutador";
+  //   }
+  // }
+
+  var resultadoComCaractere = roles.join(", ");
+  return resultadoComCaractere;
+}
 
 getChampions();
