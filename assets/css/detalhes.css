@@ -1,0 +1,115 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 60px;
+  margin-top: 50px;
+}
+
+.champion-aside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.champion-banner > img {
+  width: 250px;
+  border-radius: 20px;
+}
+
+.champion-role {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.role-icon > img {
+  width: 40px;
+}
+
+.champion-infos {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: start;
+}
+
+.champion-infos h1 {
+  font-size: 2rem;
+}
+
+.lore h2,
+.spells h2,
+.skins h2 {
+  font-size: 1.7rem;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.lore h2::after,
+.spells h2::after,
+.skins h2::after {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 25px;
+  background-color: #21d4fd;
+  background-image: linear-gradient(19deg, #21d4fd 0%, #b721ff 100%);
+
+  position: absolute;
+  top: 5px;
+  left: -20px;
+}
+
+.lore p {
+  max-width: 75ch;
+}
+
+.spells {
+  width: 100%;
+}
+
+.spells-images {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  margin-top: 20px;
+}
+
+.spells-images img {
+  border-radius: 15px;
+  padding: 5px;
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.spells-images img:hover {
+  transform: translateY(-10px);
+}
+
+.spell-details {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 15px;
+  display: none;
+}
+
+.spell-details h3 {
+  margin-bottom: 10px;
+}
+
+.spell-details p {
+  max-width: 50ch;
+}
+
+.conteudo {
+  display: none; /* Oculta todos os conteúdos inicialmente */
+}
+
+.spell-details.ativo {
+  display: block;
+}

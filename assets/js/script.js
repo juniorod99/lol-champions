@@ -14,14 +14,27 @@ const getChampions = async () => {
   }
 };
 
-const createChampionCard = (champion) => {
+async function getChampionData(id) {
+  try {
+    const champion = await Promise.all([
+      fetch(
+        `https://ddragon.leagueoflegends.com/cdn/13.22.1/data/en_US/champion/${id}.json`
+      ).then((res) => res.json()),
+    ]);
+    return true;
+  } catch (error) {
+    console.error("Failed to fetch Champion data before redirect");
+  }
+}
+
+const createChampionCard = async (champion) => {
   const card = document.createElement("div");
   card.classList.add("champion");
 
-  var name = champion.id;
+  let name = champion.id;
   name = separarPalavrasPorMaiuscula(name);
   const icon = `https://ddragon.leagueoflegends.com/cdn/13.22.1/img/champion/${champion.image.full}`;
-  var roles = champion.tags;
+  let roles = champion.tags;
   roles = juntarRole(traduzRoles(roles));
 
   const championInnerHTML = `
@@ -34,13 +47,20 @@ const createChampionCard = (champion) => {
   </div>
   `;
 
+  card.addEventListener("click", async () => {
+    const success = await getChampionData(name);
+    if (success) {
+      window.location.href = `./detalhes.html?id=${name}`;
+    }
+  });
+
   card.innerHTML = championInnerHTML;
   container.appendChild(card);
 };
 
 function separarPalavrasPorMaiuscula(name) {
-  var palavras = name.split(/(?=[A-Z])/);
-  var resultado = palavras.join(" ");
+  let palavras = name.split(/(?=[A-Z])/);
+  let resultado = palavras.join(" ");
   return resultado;
 }
 
@@ -62,21 +82,7 @@ function traduzRoles(roles) {
 }
 
 function juntarRole(roles) {
-  // for (var role in roles) {
-  //   if (roles[role] === "Marksman") {
-  //     roles[role] = "Atirador";
-  //   } else if (roles[role] === "Assassin") {
-  //     roles[role] = "Assassino";
-  //   } else if (roles[role] === "Support") {
-  //     roles[role] = "Suporte";
-  //   } else if (roles[role] === "Mage") {
-  //     roles[role] = "Mago";
-  //   } else if (roles[role] === "Fighter") {
-  //     roles[role] = "Lutador";
-  //   }
-  // }
-
-  var resultadoComCaractere = roles.join(", ");
+  let resultadoComCaractere = roles.join(", ");
   return resultadoComCaractere;
 }
 
