@@ -33,6 +33,8 @@ const createChampionCard = async (champion) => {
 
   let name = champion.id;
   name = separarPalavrasPorMaiuscula(name);
+  const key = champion.key;
+  console.log(key);
   const icon = `https://ddragon.leagueoflegends.com/cdn/13.22.1/img/champion/${champion.image.full}`;
   let roles = champion.tags;
   roles = juntarRole(traduzRoles(roles));
@@ -50,7 +52,7 @@ const createChampionCard = async (champion) => {
   card.addEventListener("click", async () => {
     const success = await getChampionData(name);
     if (success) {
-      window.location.href = `./detalhes.html?id=${name}`;
+      window.location.href = `./detalhes.html?id=${name}&key=${key}`;
     }
   });
 
