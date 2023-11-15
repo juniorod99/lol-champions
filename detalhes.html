@@ -6,70 +6,90 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/style.css">
   <title>Informações</title>
 </head>
 
 <body class="bg">
-  <main class="container fundo">
-    <div class="grid">
-      <aside class="champion-aside">
-        <div class="champion-banner">
-          <img src="./assets/images/champion/ahri.jpg" alt="Ahri">
+  <main class="fundo detalhes-container">
+    <section class="champion-infos">
+      <h1>Ahri, a Raposa de Nove Caudas.</h1>
+
+      <!-- Lore -->
+      <div class="lore">
+        <h2>Lore</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste assumenda odio, incidunt totam veritatis laboriosam excepturi, dignissimos ea cumque veniam omnis accusantium? Fuga fugit illo reiciendis dicta recusandae in nihil?
+          Dolor aut aperiam quae nihil illum. Vel quam tenetur expedita labore rem quibusdam explicabo obcaecati veniam possimus laboriosam repellendus voluptate fuga, dolor architecto est quis laudantium! Ipsum expedita nostrum ullam?</p>
+      </div>
+
+      <!-- Habilidades -->
+      <div class="spells">
+        <h2>Habilidades</h2>
+        <div class="spells-container">
+          <div class="spells-text">
+            <div class="spells-images">
+              <img src="./assets/images/champion/skills/p.png" alt="" class="item" onclick="mostrarDiv('spell-1')">
+              <img src="./assets/images/champion/skills/q.png" alt="" class="item" onclick="mostrarDiv('spell-2')">
+              <img src="./assets/images/champion/skills/w.png" alt="" class="item" onclick="mostrarDiv('spell-3')">
+              <img src="./assets/images/champion/skills/e.png" alt="" class="item" onclick="mostrarDiv('spell-4')">
+              <img src="./assets/images/champion/skills/r.png" alt="" class="item" onclick="mostrarDiv('spell-5')">
+            </div>
+            <div class="spell-details ativo" id="spell-1">
+              <h3>P - Furto de Essência</h3>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum eveniet voluptate sint? Minus, vel quod obcaecati soluta dolor possimus voluptas voluptatibus officia</p>
+            </div>
+            <div class="spell-details" id="spell-2">
+              <h3>Q - Orbe da Ilusão</h3>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum eveniet voluptate sint? Minus, vel quod obcaecati soluta dolor </p>
+            </div>
+            <div class="spell-details" id="spell-3">
+              <h3>W - Fogo de Raposa</h3>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum eveniet voluptate sint? Minus, </p>
+            </div>
+            <div class="spell-details" id="spell-4">
+              <h3>E - Encanto</h3>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum eveniet voluptate </p>
+            </div>
+            <div class="spell-details" id="spell-5">
+              <h3>R - Ímpeto Espiritual</h3>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum eveniet voluptate sint? Minus, vel quod obcaecati soluta dolor</p>
+            </div>
+          </div>
+          <div class="spells-video">
+            <video controls playsinline loop style="object-fit: cover;object-position: center center;">
+              <source src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0777/ability_0777_Q1.mp4" type="video/mp4">
+              <source src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0777/ability_0777_Q1.webm" type="video/webm">
+            </video>
+          </div>
         </div>
-        <div class="champion-role">
-          <p>Função</p>
-          <div class="role-icon">
-            <img src="./assets/images/roles/mago.png" alt="Mago">
-          </div>
-          <p>Mago</p>
-        </div>
-      </aside>
-      <section class="champion-infos">
-        <h1>Ahri, a Raposa de Nove Caudas.</h1>
-        <div class="lore">
-          <h2>Lore</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste assumenda odio, incidunt totam veritatis laboriosam excepturi, dignissimos ea cumque veniam omnis accusantium? Fuga fugit illo reiciendis dicta recusandae in nihil?
-            Dolor aut aperiam quae nihil illum. Vel quam tenetur expedita labore rem quibusdam explicabo obcaecati veniam possimus laboriosam repellendus voluptate fuga, dolor architecto est quis laudantium! Ipsum expedita nostrum ullam?</p>
-        </div>
-        <div class="spells">
-          <h2>Habilidades</h2>
-          <div class="spells-images">
-            <img src="./assets/images/champion/skills/p.png" alt="" class="item" onclick="mostrarDiv('spell-1')">
-            <img src="./assets/images/champion/skills/q.png" alt="" class="item" onclick="mostrarDiv('spell-2')">
-            <img src="./assets/images/champion/skills/w.png" alt="" class="item" onclick="mostrarDiv('spell-3')">
-            <img src="./assets/images/champion/skills/e.png" alt="" class="item" onclick="mostrarDiv('spell-4')">
-            <img src="./assets/images/champion/skills/r.png" alt="" class="item" onclick="mostrarDiv('spell-5')">
-          </div>
-          <div class="spell-details ativo" id="spell-1">
-            <h3>P - Furto de Essência</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum eveniet voluptate sint? Minus, vel quod obcaecati soluta dolor possimus voluptas voluptatibus officia</p>
-          </div>
-          <div class="spell-details" id="spell-2">
-            <h3>Q - Orbe da Ilusão</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum eveniet voluptate sint? Minus, vel quod obcaecati soluta dolor </p>
-          </div>
-          <div class="spell-details" id="spell-3">
-            <h3>W - Fogo de Raposa</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum eveniet voluptate sint? Minus, </p>
-          </div>
-          <div class="spell-details" id="spell-4">
-            <h3>E - Encanto</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum eveniet voluptate </p>
-          </div>
-          <div class="spell-details" id="spell-5">
-            <h3>R - Ímpeto Espiritual</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum eveniet voluptate sint? Minus, vel quod obcaecati soluta dolor</p>
+      </div>
+
+      <!-- Skins -->
+      <div class="skins">
+        <h2>Skins</h2>
+        <div id="thumbnail-slider" class="splide">
+          <div class="splide__track">
+            <ul class="splide__list">
+              <li class="splide__slide">
+                <img src="./assets/images/slide/1.jpg">
+              </li>
+              <li class="splide__slide">
+                <img src="./assets/images/slide/2.jpg">
+              </li>
+              <li class="splide__slide">
+                <img src="./assets/images/slide/3.jpg">
+              </li>
+            </ul>
           </div>
         </div>
-        <div class="skins">
-          <h2>Skins</h2>
-        </div>
-      </section>
-    </div>
+      </div>
+    </section>
   </main>
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
   <script src="./assets/js/champion-detalhes.js" defer></script>
+  <script src="./assets/js/slider.js" defer></script>
 </body>
 
 </html>

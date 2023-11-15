@@ -1,8 +1,12 @@
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  gap: 60px;
-  margin-top: 50px;
+.detalhes-container {
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 40px 20px;
+  max-width: 1200px;
 }
 
 .champion-aside {
@@ -58,24 +62,29 @@
   background-image: linear-gradient(19deg, #21d4fd 0%, #b721ff 100%);
 
   position: absolute;
-  top: 5px;
+  top: 8px;
   left: -20px;
 }
 
 .lore p {
-  max-width: 75ch;
+  max-width: 100ch;
 }
 
-.spells {
-  width: 100%;
+.spells-container {
+  display: flex;
+  gap: 50px;
+}
+
+.spells-text {
+  margin-top: 10px;
 }
 
 .spells-images {
   display: flex;
-  gap: 40px;
+  gap: 15px;
   align-items: center;
-  justify-content: center;
-  justify-items: center;
+  /* justify-content: start; */
+  /* justify-items: center; */
   margin-top: 20px;
 }
 
@@ -92,9 +101,6 @@
 
 .spell-details {
   margin-top: 20px;
-  padding: 20px;
-  border: 1px solid black;
-  border-radius: 15px;
   display: none;
 }
 
@@ -106,10 +112,31 @@
   max-width: 50ch;
 }
 
+.spells-video {
+  max-width: 650px;
+}
+
+.spells-video video {
+  width: 100%;
+  height: 100%;
+}
+
 .conteudo {
   display: none; /* Oculta todos os conteúdos inicialmente */
 }
 
 .spell-details.ativo {
   display: block;
+}
+.splide__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.splide__slide {
+  opacity: 0.6;
+}
+
+.splide__slide.is-active {
+  opacity: 1;
 }

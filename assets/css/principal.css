@@ -36,6 +36,7 @@ input {
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: -9px 10px 20px 0px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
 .champion-icon {
