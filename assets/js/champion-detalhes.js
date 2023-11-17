@@ -37,14 +37,20 @@ const createChampionPage = (champion, spellsVideoArray) => {
   const passiveVideo = spellsVideoArray.passive.abilityVideoPath;
   const spellsVideo = spellsVideoArray.spells;
   const skins = champion.skins;
+  console.log(skins);
+  const background = `url("https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${name}_0.jpg")`;
+  console.log(background);
   const listaDeSkins = gerarListaSkins(skins, name);
   const listaSpells = gerarHabilidades(passive, spells);
   const listaSpellsVideos = gerarVideos(passiveVideo, spellsVideo);
+  championSection.style.backgroundImage = `${background}`;
+  console.log(championSection);
 
   const championInnerHTML = `
-  <h1 class="name">${name}</h1>
-  <span class="title">${title}</span>
-
+  <div class="topo">
+    <h1 class="name">${name}</h1>
+    <span class="title">${title}</span>
+  </div>
   <!-- Lore -->
   <div class="lore">
     <h2>Lore</h2>

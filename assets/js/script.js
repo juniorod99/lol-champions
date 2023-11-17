@@ -30,7 +30,9 @@ async function getChampionData(id) {
 const createChampionCard = async (champion) => {
   const card = document.createElement("div");
   card.classList.add("champion");
-
+  card.classList.add("animate__animated");
+  card.classList.add("animate__fadeIn");
+  card.classList.add("hvr-grow");
   let name = champion.id;
   name = separarPalavrasPorMaiuscula(name);
   const key = champion.key;
@@ -40,7 +42,7 @@ const createChampionCard = async (champion) => {
   roles = juntarRole(traduzRoles(roles));
 
   const championInnerHTML = `
-  <div class="champion-icon">
+  <div class="champion-icon ">
     <img class="icon" src="${icon}" alt="${champion.id}">
   </div>
   <div class="champion-info">

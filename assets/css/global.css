@@ -3,6 +3,10 @@
   /* scroll-behavior: smooth; */
 }
 
+.animate__animated.animate__fadeIn {
+  --animate-duration: 2s;
+}
+
 html {
   scroll-behavior: smooth;
 }

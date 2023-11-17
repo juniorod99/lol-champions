@@ -3,24 +3,34 @@
 
   background-size: cover; /* Para cobrir todo o elemento body */
   background-attachment: fixed; /* Torna o plano de fundo fixo */
-  margin-bottom: 40px;
+}
+
+.redes {
+  font-size: 3rem;
+  line-height: 3rem;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+.redes i {
+  color: rgb(7, 94, 94);
+  transition: color 0.3s;
+}
+.redes i:hover {
+  color: rgb(18, 116, 129);
 }
 
 .header {
-  margin: 40px 0px;
+  margin: 20px auto 20px auto;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-}
-
-.title {
-  margin-bottom: 20px;
+  padding: 0px 30px;
 }
 
 input {
   border: none;
-  border-radius: 15px;
-  padding: 10px;
+  border-radius: 20px;
+  padding: 10px 15px;
   width: 250px;
 }
 
