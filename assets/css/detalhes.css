@@ -1,5 +1,26 @@
 .bg-detalhes {
-  background-image: linear-gradient(to top, #007adf 0%, #00ecbc 100%);
+  /* background-image: linear-gradient(to top, #007adf 0%, #00ecbc 100%); */
+}
+
+.voltar {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  border: none;
+  background-color: #252525;
+  padding: 5px;
+  border-radius: 50%;
+  z-index: 1000;
+}
+
+.voltar a {
+  display: block;
+}
+
+.voltar i {
+  font-size: 2rem;
+  color: #b4b4b4;
+  line-height: 0;
 }
 
 .detalhes-container {
@@ -77,6 +98,7 @@
   margin-bottom: 10px;
   position: relative;
   margin-top: 20px;
+  padding-left: 20px;
 }
 
 .lore h2::after,
@@ -95,7 +117,7 @@
 
   position: absolute;
   top: 8px;
-  left: -20px;
+  left: 0px;
 }
 
 .lore p {

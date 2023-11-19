@@ -13,17 +13,18 @@
 }
 
 .footer {
+  text-align: center;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 30px;
   padding: 15px 10px;
-  background-color: #ff9a8b;
-  background-image: linear-gradient(
-    90deg,
-    #ff9a8b 0%,
-    #ff6a88 55%,
-    #ff99ac 100%
+  background: rgb(41, 37, 110);
+  background: radial-gradient(
+    circle,
+    rgba(41, 37, 110, 1) 0%,
+    rgba(46, 109, 152, 1) 100%
   );
 }
 
