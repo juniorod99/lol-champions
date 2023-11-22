@@ -15,10 +15,11 @@ const getChampions = async () => {
 };
 
 async function getChampionData(id) {
+  var champion_name = id.replace(/\s/g, "");
   try {
     const champion = await Promise.all([
       fetch(
-        `https://ddragon.leagueoflegends.com/cdn/13.22.1/data/en_US/champion/${id}.json`
+        `https://ddragon.leagueoflegends.com/cdn/13.22.1/data/en_US/champion/${champion_name}.json`
       ).then((res) => res.json()),
     ]);
     return true;

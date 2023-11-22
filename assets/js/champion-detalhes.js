@@ -5,10 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
   var urlAtual = new URL(window.location.href);
 
   const championID = urlAtual.searchParams.get("id");
+  const championID2 = championID.replace(/\s/g, "");
   const championKey = urlAtual.searchParams.get("key");
 
   currentChampionId = championID;
-  getChampionData(championID, championKey);
+  getChampionData(championID2, championKey);
 });
 
 async function getChampionData(id, key) {
