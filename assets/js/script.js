@@ -1,4 +1,6 @@
 const container = document.querySelector("#container");
+const searchInput = document.querySelector("#search");
+console.log(searchInput);
 let allChampions = [];
 
 const getChampions = async () => {
@@ -7,6 +9,8 @@ const getChampions = async () => {
   const response = await fetch(url);
   const data = await response.json();
   const champs = data.data;
+  allChampions = champs;
+  // console.log(allChampions);
   // await fetchChampions(champs);
   totalChampions = Object.keys(data.data).length;
   for (var chave in champs) {
@@ -19,7 +23,7 @@ async function getChampionData(id) {
   try {
     const champion = await Promise.all([
       fetch(
-        `https://ddragon.leagueoflegends.com/cdn/13.22.1/data/en_US/champion/${champion_name}.json`
+        `https://ddragon.leagueoflegends.com/cdn/13.22.1/data/pt_BR/champion/${champion_name}.json`
       ).then((res) => res.json()),
     ]);
     return true;
@@ -29,6 +33,8 @@ async function getChampionData(id) {
 }
 
 const createChampionCard = async (champion) => {
+  // console.log("---------------");
+  // console.log(champion);
   const card = document.createElement("div");
   card.classList.add("champion");
   card.classList.add("animate__animated");
@@ -37,7 +43,7 @@ const createChampionCard = async (champion) => {
   let name = champion.id;
   name = separarPalavrasPorMaiuscula(name);
   const key = champion.key;
-  console.log(key);
+  // console.log(key);
   const icon = `https://ddragon.leagueoflegends.com/cdn/13.22.1/img/champion/${champion.image.full}`;
   let roles = champion.tags;
   roles = juntarRole(traduzRoles(roles));
@@ -90,5 +96,30 @@ function juntarRole(roles) {
   let resultadoComCaractere = roles.join(", ");
   return resultadoComCaractere;
 }
+
+function buscaCampeao() {
+  const nomeBusca = searchInput.value.toLowerCase();
+  let todosCampeoes = Object.keys(allChampions);
+  console.log(todosCampeoes);
+
+  const campeoesFiltrados = Object.keys(allChampions)
+    .filter((chave) =>
+      allChampions[chave].id.toLowerCase().startsWith(nomeBusca)
+    )
+    .reduce((resultado, chave) => {
+      resultado[chave] = allChampions[chave];
+      return resultado;
+    }, {});
+
+  // console.log(campeoesFiltrados);
+  // createChampionCard(campeoesFiltrados);
+  container.innerHTML = "";
+  for (var campeao in campeoesFiltrados) {
+    console.log(campeoesFiltrados[campeao]);
+    createChampionCard(campeoesFiltrados[campeao]);
+  }
+}
+
+searchInput.addEventListener("keyup", buscaCampeao);
 
 getChampions();
