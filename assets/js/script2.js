@@ -1,5 +1,7 @@
 const container = document.querySelector("#container");
 const searchInput = document.querySelector("#search");
+const closeButton = document.querySelector(".fechar-icon");
+console.log(closeButton);
 let allChampions = [];
 
 fetch(
@@ -33,6 +35,7 @@ function createChampionCard(champions) {
 
     const card = document.createElement("div");
     card.classList.add("champion");
+    card.classList.add("hvr-grow");
 
     let name = campeaoAtual.id;
     name = separarPalavrasPorMaiuscula(name);
@@ -106,6 +109,17 @@ function buscaCampeao() {
     }, {});
 
   createChampionCard(campeoesFiltrados);
+
+  var quantidadeCampeoesFiltrados = Object.keys(campeoesFiltrados);
+  if (quantidadeCampeoesFiltrados.length === 0) {
+    container.innerHTML = "Campeão não encontrado";
+  }
+}
+
+function clearSearch() {
+  searchInput.value = "";
+  createChampionCard(allChampions);
 }
 
 searchInput.addEventListener("keyup", buscaCampeao);
+closeButton.addEventListener("click", clearSearch);

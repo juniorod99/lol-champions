@@ -1,6 +1,5 @@
 :root {
   --animate-delay: 0.5s;
-  /* scroll-behavior: smooth; */
 }
 
 .animate__animated.animate__fadeIn {
@@ -9,6 +8,17 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+main {
+  flex: 1;
 }
 
 * {
@@ -41,4 +51,14 @@ img {
   max-width: 100%;
   display: block;
   border-radius: 4px;
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-clear-button {
+  display: none;
+}
+
+/* Para Microsoft Edge */
+input[type="search"]::-ms-clear {
+  display: none;
 }
