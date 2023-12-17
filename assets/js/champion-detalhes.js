@@ -46,21 +46,21 @@ const createChampionPage = (champion, spellsVideoArray) => {
   // championSection.style.backgroundImage = `${background}`;
 
   const championInnerHTML = `
-  <div class="campeao-banner">
-    <img src="${background2}" alt="Imagem do campeão" style="">
+  <div class="campeao-banner animate__animated animate__fadeInDown">
+    <img src="${background2}" alt="Imagem do campeão" class="">
   </div>
   <div class="topo">
-    <h1 class="name">${name}</h1>
-    <span class="title">${title}</span>
+    <h1 class="name animate__animated animate__fadeInDown animate__delay-1s">${name}</h1>
+    <span class="title animate__animated animate__fadeInDown animate__delay-2s">${title}</span>
   </div>
   <!-- Lore -->
-  <div class="lore">
+  <div class="lore animate__animated animate__fadeInLeft animate__delay-2s">
     <h2>Lore</h2>
     <p>${lore}</p>
   </div>
 
   <!-- Habilidades -->
-  <div class="spells">
+  <div class="spells animate__animated animate__fadeInLeft animate__delay-3s">
     <h2>Habilidades</h2>
     <div class="spells-container">
       ${listaSpells}
@@ -69,7 +69,7 @@ const createChampionPage = (champion, spellsVideoArray) => {
   </div>
 
   <!-- Skins -->
-  <div class="skins">
+  <div class="skins animate__animated animate__fadeInLeft animate__delay-4s">
     <h2>Skins</h2>
     <div id="thumbnail-slider" class="splide">
       <div class="splide__track">
@@ -92,23 +92,23 @@ function gerarHabilidades(passive, spells) {
       <img src="https://ddragon.leagueoflegends.com/cdn/13.22.1/img/spell/${spells[2].image.full}" alt="" class="item" onclick="mostrarDiv('spell-4', 'video-4')">
       <img src="https://ddragon.leagueoflegends.com/cdn/13.22.1/img/spell/${spells[3].image.full}" alt="" class="item" onclick="mostrarDiv('spell-5', 'video-5')">
     </div>
-    <div class="spell-details ativo" id="spell-1">
+    <div class="spell-details ativo animate__animated animate__fadeIn" id="spell-1">
       <h3>P - ${passive.name}</h3>
       <p>${passive.description}</p>
     </div>
-    <div class="spell-details" id="spell-2">
+    <div class="spell-details animate__animated animate__fadeIn" id="spell-2">
       <h3>Q - ${spells[0].name}</h3>
       <p>${spells[0].description}</p>
     </div>
-    <div class="spell-details" id="spell-3">
+    <div class="spell-details animate__animated animate__fadeIn" id="spell-3">
       <h3>W - ${spells[1].name}</h3>
       <p>${spells[1].description}</p>
     </div>
-    <div class="spell-details" id="spell-4">
+    <div class="spell-details animate__animated animate__fadeIn" id="spell-4">
       <h3>E - ${spells[2].name}</h3>
       <p>${spells[2].description}</p>
     </div>
-    <div class="spell-details" id="spell-5">
+    <div class="spell-details animate__animated animate__fadeIn" id="spell-5">
       <h3>R - ${spells[3].name}</h3>
       <p>${spells[3].description}</p>
     </div>

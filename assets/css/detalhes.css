@@ -9,6 +9,7 @@
     url("../images/bgsr.jpg");
   background-size: cover;
   background-attachment: fixed;
+  background-position: center center;
 }
 
 .voltar {
@@ -16,10 +17,11 @@
   top: 10px;
   left: 10px;
   border: none;
-  background-color: #000000;
+  background-color: #ffffff;
   padding: 5px;
   border-radius: 50%;
   z-index: 1000;
+  line-height: 1;
 }
 
 .voltar a {
@@ -28,8 +30,8 @@
 
 .voltar i {
   font-size: 2rem;
-  color: #ffffff;
-  line-height: 0;
+  color: #000000;
+  line-height: 1;
 }
 
 .detalhes-container {
@@ -142,14 +144,6 @@
   margin-top: 20px;
 }
 
-/* .spells-images img {
-  border-radius: 15px;
-  padding: 5px;
-  transition: transform 0.3s ease-in-out;
-  cursor: pointer;
-  box-shadow: 0px 10px 34px 12px rgba(0, 0, 0, 0.1); 
-} */
-
 .spells-images img {
   --c: #ffffff; /* the border color */
   --b: 1.2px; /* the border thickness*/
@@ -168,7 +162,8 @@
   cursor: pointer;
 }
 
-.spells-images img:hover {
+.spells-images img:hover,
+.spells-images img:active {
   --_i: 100%;
   transition: 0.3s, background-size 0.3s 0.3s;
 }
