@@ -1,29 +1,23 @@
 const container = document.querySelector("#container");
 const searchInput = document.querySelector("#search");
-console.log(searchInput);
+const closeButton = document.querySelector(".fechar-icon");
 let allChampions = [];
 
-const getChampions = async () => {
-  const url =
-    "https://ddragon.leagueoflegends.com/cdn/13.22.1/data/pt_BR/champion.json";
-  const response = await fetch(url);
-  const data = await response.json();
-  const champs = data.data;
-  allChampions = champs;
-  // console.log(allChampions);
-  // await fetchChampions(champs);
-  totalChampions = Object.keys(data.data).length;
-  for (var chave in champs) {
-    await createChampionCard(champs[chave]);
-  }
-};
+fetch(
+  "https://ddragon.leagueoflegends.com/cdn/13.24.1/data/pt_BR/champion.json"
+)
+  .then((response) => response.json())
+  .then((data) => {
+    allChampions = data.data;
+    createChampionCard(allChampions);
+  });
 
 async function getChampionData(id) {
-  var champion_name = id.replace(/\s/g, "");
+  var championName = id.replace(/\s/g, "");
   try {
     const champion = await Promise.all([
       fetch(
-        `https://ddragon.leagueoflegends.com/cdn/13.22.1/data/pt_BR/champion/${champion_name}.json`
+        `https://ddragon.leagueoflegends.com/cdn/13.24.1/data/pt_BR/champion/${championName}.json`
       ).then((res) => res.json()),
     ]);
     return true;
@@ -32,50 +26,47 @@ async function getChampionData(id) {
   }
 }
 
-const createChampionCard = async (champion) => {
-  // console.log("---------------");
-  // console.log(champion);
-  const card = document.createElement("div");
-  card.classList.add("champion");
-  card.classList.add("animate__animated");
-  card.classList.add("animate__fadeIn");
-  card.classList.add("hvr-grow");
-  let name = champion.id;
-  name = separarPalavrasPorMaiuscula(name);
-  const key = champion.key;
-  // console.log(key);
-  const icon = `https://ddragon.leagueoflegends.com/cdn/13.22.1/img/champion/${champion.image.full}`;
-  let roles = champion.tags;
-  roles = juntarRole(traduzRoles(roles));
+function createChampionCard(champions) {
+  container.innerHTML = "";
 
-  const championInnerHTML = `
-  <div class="champion-icon ">
-    <img class="icon" src="${icon}" alt="${champion.id}">
-  </div>
-  <div class="champion-info">
-    <h2 class="name">${name}</h2>
-    <p class="type">${roles}</p>
-  </div>
-  `;
+  for (let champion in champions) {
+    const actualChampion = champions[champion];
+    const card = document.createElement("div");
+    card.classList.add("champion");
+    card.classList.add("hvr-grow");
 
-  card.addEventListener("click", async () => {
-    const success = await getChampionData(name);
-    if (success) {
-      window.location.href = `./detalhes.html?id=${name}&key=${key}`;
-    }
-  });
+    let name = splitNamesByUppercase(actualChampion.id);
+    let key = actualChampion.key;
+    let icon = `https://ddragon.leagueoflegends.com/cdn/13.24.1/img/champion/${actualChampion.image.full}`;
+    let roles = mergeRoles(translateRoles(actualChampion.tags));
 
-  card.innerHTML = championInnerHTML;
-  container.appendChild(card);
-};
+    const championInnerHTML = `
+    <div class="champion-icon ">
+      <img class="icon" src="${icon}" alt="${champion.id}">
+    </div>
+    <div class="champion-info">
+      <h2 class="name">${name}</h2>
+      <p class="type">${roles}</p>
+    </div>
+    `;
 
-function separarPalavrasPorMaiuscula(name) {
-  let palavras = name.split(/(?=[A-Z])/);
-  let resultado = palavras.join(" ");
-  return resultado;
+    card.addEventListener("click", async () => {
+      const success = await getChampionData(name);
+      if (success) {
+        window.location.href = `./detalhes.html?id=${name}&key=${key}`;
+      }
+    });
+
+    card.innerHTML = championInnerHTML;
+    container.appendChild(card);
+  }
 }
 
-function traduzRoles(roles) {
+function splitNamesByUppercase(name) {
+  return name.split(/(?=[A-Z])/).join(" ");
+}
+
+function translateRoles(roles) {
   for (var role in roles) {
     if (roles[role] === "Marksman") {
       roles[role] = "Atirador";
@@ -92,34 +83,33 @@ function traduzRoles(roles) {
   return roles;
 }
 
-function juntarRole(roles) {
-  let resultadoComCaractere = roles.join(", ");
-  return resultadoComCaractere;
+function mergeRoles(roles) {
+  return roles.join(", ");
 }
 
-function buscaCampeao() {
-  const nomeBusca = searchInput.value.toLowerCase();
-  let todosCampeoes = Object.keys(allChampions);
-  console.log(todosCampeoes);
-
-  const campeoesFiltrados = Object.keys(allChampions)
-    .filter((chave) =>
-      allChampions[chave].id.toLowerCase().startsWith(nomeBusca)
+function searchChampion() {
+  const searchedName = searchInput.value.toLowerCase();
+  const filteredChampions = Object.keys(allChampions)
+    .filter((key) =>
+      allChampions[key].id.toLowerCase().startsWith(searchedName)
     )
-    .reduce((resultado, chave) => {
-      resultado[chave] = allChampions[chave];
-      return resultado;
+    .reduce((result, key) => {
+      result[key] = allChampions[key];
+      return result;
     }, {});
 
-  // console.log(campeoesFiltrados);
-  // createChampionCard(campeoesFiltrados);
-  container.innerHTML = "";
-  for (var campeao in campeoesFiltrados) {
-    console.log(campeoesFiltrados[campeao]);
-    createChampionCard(campeoesFiltrados[campeao]);
+  createChampionCard(filteredChampions);
+
+  var quantityFilteredChampions = Object.keys(filteredChampions);
+  if (quantityFilteredChampions.length === 0) {
+    container.innerHTML = "Nenhum campeão encontrado";
   }
 }
 
-searchInput.addEventListener("keyup", buscaCampeao);
+function clearSearch() {
+  searchInput.value = "";
+  createChampionCard(allChampions);
+}
 
-getChampions();
+searchInput.addEventListener("keyup", searchChampion);
+closeButton.addEventListener("click", clearSearch);

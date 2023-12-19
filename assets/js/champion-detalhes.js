@@ -2,21 +2,18 @@ let currentChampionId = null;
 const championSection = document.querySelector(".champion-infos");
 
 document.addEventListener("DOMContentLoaded", () => {
-  var urlAtual = new URL(window.location.href);
-
-  const championID = urlAtual.searchParams.get("id");
-  const championID2 = championID.replace(/\s/g, "");
-  const championKey = urlAtual.searchParams.get("key");
-
-  currentChampionId = championID;
-  getChampionData(championID2, championKey);
+  var url = new URL(window.location.href);
+  const championName = url.searchParams.get("id").replace(/\s/g, "");
+  const championKey = url.searchParams.get("key");
+  currentChampionId = championName;
+  getChampionData(championName, championKey);
 });
 
 async function getChampionData(id, key) {
   try {
     const [champion, spellsVideo] = await Promise.all([
       fetch(
-        `https://ddragon.leagueoflegends.com/cdn/13.22.1/data/pt_BR/champion/${id}.json`
+        `https://ddragon.leagueoflegends.com/cdn/13.24.1/data/pt_BR/champion/${id}.json`
       ).then((res) => res.json()),
       fetch(
         `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champions/${key}.json`
@@ -33,21 +30,19 @@ const createChampionPage = (champion, spellsVideoArray) => {
   const name = champion.id;
   const title = champion.title;
   const lore = champion.lore;
+  const skins = champion.skins;
+  const background = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${name}_0.jpg`;
   const passive = champion.passive;
   const spells = champion.spells;
   const passiveVideo = spellsVideoArray.passive.abilityVideoPath;
   const spellsVideo = spellsVideoArray.spells;
-  const skins = champion.skins;
-  const background = `url("https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${name}_0.jpg")`;
-  const background2 = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${name}_0.jpg`;
-  const listaDeSkins = gerarListaSkins(skins, name);
-  const listaSpells = gerarHabilidades(passive, spells);
-  const listaSpellsVideos = gerarVideos(passiveVideo, spellsVideo);
-  // championSection.style.backgroundImage = `${background}`;
+  const skinsList = createSkinsList(skins, name);
+  const spellsList = createSpellsList(passive, spells);
+  const spellsListVideos = createSpellsVideos(passiveVideo, spellsVideo);
 
   const championInnerHTML = `
   <div class="campeao-banner animate__animated animate__fadeInDown">
-    <img src="${background2}" alt="Imagem do campeão" class="">
+    <img src="${background}" alt="Imagem do campeão" class="">
   </div>
   <div class="topo">
     <h1 class="name animate__animated animate__fadeInDown animate__delay-1s">${name}</h1>
@@ -63,8 +58,8 @@ const createChampionPage = (champion, spellsVideoArray) => {
   <div class="spells animate__animated animate__fadeInLeft animate__delay-3s">
     <h2>Habilidades</h2>
     <div class="spells-container">
-      ${listaSpells}
-      ${listaSpellsVideos}
+      ${spellsList}
+      ${spellsListVideos}
     </div>
   </div>
 
@@ -73,24 +68,24 @@ const createChampionPage = (champion, spellsVideoArray) => {
     <h2>Skins</h2>
     <div id="thumbnail-slider" class="splide">
       <div class="splide__track">
-        ${listaDeSkins}
+        ${skinsList}
       </div>
     </div>
   </div>
   `;
   championSection.innerHTML = championInnerHTML;
-  geraSlide();
+  initSlider();
 };
 
-function gerarHabilidades(passive, spells) {
+function createSpellsList(passive, spells) {
   const spellsInnerHTML = `
   <div class="spells-text">
     <div class="spells-images">
-      <img src="https://ddragon.leagueoflegends.com/cdn/13.22.1/img/passive/${passive.image.full}" alt="" class="item" onclick="mostrarDiv('spell-1', 'video-1')">
-      <img src="https://ddragon.leagueoflegends.com/cdn/13.22.1/img/spell/${spells[0].image.full}" alt="" class="item" onclick="mostrarDiv('spell-2', 'video-2')">
-      <img src="https://ddragon.leagueoflegends.com/cdn/13.22.1/img/spell/${spells[1].image.full}" alt="" class="item" onclick="mostrarDiv('spell-3', 'video-3')">
-      <img src="https://ddragon.leagueoflegends.com/cdn/13.22.1/img/spell/${spells[2].image.full}" alt="" class="item" onclick="mostrarDiv('spell-4', 'video-4')">
-      <img src="https://ddragon.leagueoflegends.com/cdn/13.22.1/img/spell/${spells[3].image.full}" alt="" class="item" onclick="mostrarDiv('spell-5', 'video-5')">
+      <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/passive/${passive.image.full}" alt="" class="item" onclick="showSpell('spell-1', 'video-1')">
+      <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/spell/${spells[0].image.full}" alt="" class="item" onclick="showSpell('spell-2', 'video-2')">
+      <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/spell/${spells[1].image.full}" alt="" class="item" onclick="showSpell('spell-3', 'video-3')">
+      <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/spell/${spells[2].image.full}" alt="" class="item" onclick="showSpell('spell-4', 'video-4')">
+      <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/spell/${spells[3].image.full}" alt="" class="item" onclick="showSpell('spell-5', 'video-5')">
     </div>
     <div class="spell-details ativo animate__animated animate__fadeIn" id="spell-1">
       <h3>P - ${passive.name}</h3>
@@ -117,7 +112,7 @@ function gerarHabilidades(passive, spells) {
   return spellsInnerHTML;
 }
 
-function gerarListaSkins(skins, name) {
+function createSkinsList(skins, name) {
   let listaInnerHTML = "";
 
   for (skin in skins) {
@@ -136,7 +131,7 @@ function gerarListaSkins(skins, name) {
   return ul;
 }
 
-function mostrarDiv(idSpell, idVideo) {
+function showSpell(idSpell, idVideo) {
   var divsText = document.querySelectorAll(".spell-details");
   var divsVideos = document.querySelectorAll(".spell-video");
   divsText.forEach(function (div) {
@@ -156,7 +151,7 @@ function mostrarDiv(idSpell, idVideo) {
   });
 }
 
-function geraSlide() {
+function initSlider() {
   var splide = new Splide(".splide", {
     type: "fade",
     rewind: true,
@@ -164,7 +159,7 @@ function geraSlide() {
   splide.mount();
 }
 
-function gerarVideos(passive, spells) {
+function createSpellsVideos(passive, spells) {
   const spellsVideosInnerHTML = `
   <div class="spells-video">
     <video id="video-1" class="spell-video ativo" controls playsinline preload="metadata" autoplay="true" muted style="object-fit: cover;object-position: center center;">
