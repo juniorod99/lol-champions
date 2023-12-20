@@ -4,7 +4,7 @@
 
 ![Resultado final do projeto](.github/preview.png)
 
-<h4 align="center"><a href="https://juniorod99.github.io/player-de-musica/">Clique para visitar o projeto</a></h4>
+<h4 align="center"><a href="https://juniorod99.github.io/loldex/">Clique para visitar o projeto</a></h4>
 
 ## 📚 Projeto
 
