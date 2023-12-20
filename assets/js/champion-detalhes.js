@@ -41,10 +41,10 @@ const createChampionPage = (champion, spellsVideoArray) => {
   const spellsListVideos = createSpellsVideos(passiveVideo, spellsVideo);
 
   const championInnerHTML = `
-  <div class="campeao-banner animate__animated animate__fadeInDown">
+  <div class="banner animate__animated animate__fadeInDown">
     <img src="${background}" alt="Imagem do campeão" class="">
   </div>
-  <div class="topo">
+  <div class="titulo">
     <h1 class="name animate__animated animate__fadeInDown animate__delay-1s">${name}</h1>
     <span class="title animate__animated animate__fadeInDown animate__delay-2s">${title}</span>
   </div>
@@ -75,11 +75,26 @@ const createChampionPage = (champion, spellsVideoArray) => {
   `;
   championSection.innerHTML = championInnerHTML;
   initSlider();
+  const skillsIcons = document.querySelectorAll(".item");
+  skillsIcons[0].classList.add("border");
+  skillsIcons.forEach((skillIcon) => {
+    skillIcon.addEventListener("click", () => {
+      skillIcon.classList.add("border");
+
+      skillsIcons.forEach((anotherSkillIcon) => {
+        if (anotherSkillIcon !== skillIcon) {
+          anotherSkillIcon.classList.remove("border");
+        }
+      });
+    });
+  });
+
+  console.log(skillsIcons);
 };
 
 function createSpellsList(passive, spells) {
   const spellsInnerHTML = `
-  <div class="spells-text">
+  <div class="spells-description">
     <div class="spells-images">
       <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/passive/${passive.image.full}" alt="" class="item" onclick="showSpell('spell-1', 'video-1')">
       <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/spell/${spells[0].image.full}" alt="" class="item" onclick="showSpell('spell-2', 'video-2')">
@@ -87,25 +102,27 @@ function createSpellsList(passive, spells) {
       <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/spell/${spells[2].image.full}" alt="" class="item" onclick="showSpell('spell-4', 'video-4')">
       <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/spell/${spells[3].image.full}" alt="" class="item" onclick="showSpell('spell-5', 'video-5')">
     </div>
-    <div class="spell-details ativo animate__animated animate__fadeIn" id="spell-1">
-      <h3>P - ${passive.name}</h3>
-      <p>${passive.description}</p>
-    </div>
-    <div class="spell-details animate__animated animate__fadeIn" id="spell-2">
-      <h3>Q - ${spells[0].name}</h3>
-      <p>${spells[0].description}</p>
-    </div>
-    <div class="spell-details animate__animated animate__fadeIn" id="spell-3">
-      <h3>W - ${spells[1].name}</h3>
-      <p>${spells[1].description}</p>
-    </div>
-    <div class="spell-details animate__animated animate__fadeIn" id="spell-4">
-      <h3>E - ${spells[2].name}</h3>
-      <p>${spells[2].description}</p>
-    </div>
-    <div class="spell-details animate__animated animate__fadeIn" id="spell-5">
-      <h3>R - ${spells[3].name}</h3>
-      <p>${spells[3].description}</p>
+    <div class="spells-text">
+      <div class="spell-details ativo animate__animated animate__fadeIn" id="spell-1">
+        <h3>P - ${passive.name}</h3>
+        <p>${passive.description}</p>
+      </div>
+      <div class="spell-details animate__animated animate__fadeIn" id="spell-2">
+        <h3>Q - ${spells[0].name}</h3>
+        <p>${spells[0].description}</p>
+      </div>
+      <div class="spell-details animate__animated animate__fadeIn" id="spell-3">
+        <h3>W - ${spells[1].name}</h3>
+        <p>${spells[1].description}</p>
+      </div>
+      <div class="spell-details animate__animated animate__fadeIn" id="spell-4">
+        <h3>E - ${spells[2].name}</h3>
+        <p>${spells[2].description}</p>
+      </div>
+      <div class="spell-details animate__animated animate__fadeIn" id="spell-5">
+        <h3>R - ${spells[3].name}</h3>
+        <p>${spells[3].description}</p>
+      </div>
     </div>
   </div>`;
 

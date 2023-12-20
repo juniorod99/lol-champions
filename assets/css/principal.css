@@ -7,23 +7,33 @@
 .header {
   margin: 20px auto 20px auto;
   display: flex;
-  gap: 20px;
+  gap: 10px;
   justify-content: space-between;
   align-items: center;
   padding: 0px 30px;
 }
 
+.title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .redes {
-  font-size: 3rem;
-  line-height: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 2.5rem;
+  line-height: 1;
   justify-content: flex-end;
 }
 .redes i {
+  display: block;
   color: rgb(7, 94, 94);
   transition: color 0.3s;
 }
 .redes i:hover {
-  color: rgb(18, 116, 129);
+  color: rgb(15, 72, 119);
 }
 
 .busca {
