@@ -9,6 +9,10 @@
   max-width: 1200px;
 }
 
+.container-main {
+  flex: 1;
+}
+
 .footer {
   text-align: center;
   color: #ffffff;
@@ -17,7 +21,6 @@
   justify-content: center;
   padding: 15px 10px;
   margin-top: 20px;
-  background: rgb(41, 37, 110);
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
 }
 

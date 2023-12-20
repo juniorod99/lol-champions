@@ -34,6 +34,9 @@ function createChampionCard(champions) {
     const card = document.createElement("div");
     card.classList.add("champion");
     card.classList.add("hvr-grow");
+    card.classList.add("animate__animated");
+    card.classList.add("animate__fadeInUp");
+    // card.classList.add("hvr-grow");
 
     let name = splitNamesByUppercase(actualChampion.id);
     let key = actualChampion.key;
@@ -99,6 +102,10 @@ function searchChampion() {
     }, {});
 
   createChampionCard(filteredChampions);
+  var cards = document.querySelectorAll(".champion");
+  cards.forEach((card) => {
+    card.classList.remove("animate__animated");
+  });
 
   var quantityFilteredChampions = Object.keys(filteredChampions);
   if (quantityFilteredChampions.length === 0) {

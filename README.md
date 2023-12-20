@@ -4,7 +4,7 @@
 
 ![Resultado final do projeto](.github/preview.png)
 
-<h4 align="center"><a href="https://juniorod99.github.io/player-de-musica/">Clique para visitar o projeto</a></h4>
+<h4 align="center"><a href="https://juniorod99.github.io/loldex/" target="_blank">Clique para visitar o projeto</a></h4>
 
 ## 📚 Projeto
 
@@ -18,7 +18,7 @@ Para o desenvolvimento deste projeto utilizei as seguintes tecnologias:
 - CSS;
 - JavaScript;
 - Riot API;
-- Splide;
+- Splide (para criar os slides);
 - Git e Github;
 
 ## 🤯 Aprendizado
@@ -30,11 +30,3 @@ Durante o desenvolvimento desse projeto aprendi a utilizar diversas funcionalida
 - Manipular o DOM;
 - Criar o HTML no JavaScript e passar dados dinamicamente;
 - Pegar valores da URL da página;
-
-## 🔧 Ajustes e melhorias
-
-O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
-
-- [ ] Pegar playlist do youtube e transformar em JSON
-- [ ] Importar JSON no player de música
-- [ ] Reproduzir músicas a partir do JSON

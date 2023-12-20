@@ -6,6 +6,13 @@
   --animate-duration: 2s;
 }
 
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Poppins";
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -15,17 +22,6 @@ body {
   flex-direction: column;
   min-height: 100vh;
   margin: 0;
-}
-
-main {
-  flex: 1;
-}
-
-* {
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
-  font-family: "Poppins";
 }
 
 h1,
@@ -57,7 +53,6 @@ input[type="search"]::-webkit-search-clear-button {
   display: none;
 }
 
-/* Para Microsoft Edge */
 input[type="search"]::-ms-clear {
   display: none;
 }
