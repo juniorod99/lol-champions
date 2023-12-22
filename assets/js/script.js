@@ -33,8 +33,6 @@ function createChampionCard(champions) {
     const actualChampion = champions[champion];
     const card = document.createElement("div");
     card.classList.add("champion");
-    // card.classList.add("animate__animated");
-    // card.classList.add("animate__fadeInUp");
     card.classList.add("hvr-grow");
 
     let name = splitNamesByUppercase(actualChampion.id);
