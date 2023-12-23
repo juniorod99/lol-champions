@@ -99,10 +99,6 @@ function searchChampion() {
     }, {});
 
   createChampionCard(filteredChampions);
-  // var cards = document.querySelectorAll(".champion");
-  // cards.forEach((card) => {
-  //   card.classList.remove("animate__animated");
-  // });
 
   var quantityFilteredChampions = Object.keys(filteredChampions);
   if (quantityFilteredChampions.length === 0) {
