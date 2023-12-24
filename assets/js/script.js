@@ -34,7 +34,6 @@ function createChampionCard(champions) {
     const card = document.createElement("div");
     card.classList.add("champion");
     card.classList.add("hvr-grow");
-
     let name = splitNamesByUppercase(actualChampion.id);
     let key = actualChampion.key;
     let icon = `https://ddragon.leagueoflegends.com/cdn/13.24.1/img/champion/${actualChampion.image.full}`;
