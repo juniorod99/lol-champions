@@ -118,7 +118,6 @@
 @media (max-width: 500px) {
   .container {
     gap: 20px;
-    /* justify-content: space-evenly; */
   }
   .champion {
     min-width: 150px;
