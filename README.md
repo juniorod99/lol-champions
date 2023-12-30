@@ -19,7 +19,7 @@ Para o desenvolvimento deste projeto utilizei as seguintes tecnologias:
 - JavaScript;
 - Riot API;
 - Splide (para criar os slides);
-- Git e Github;
+- Git e Github.
 
 ## 🤯 Aprendizado
 
