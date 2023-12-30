@@ -30,3 +30,4 @@ Durante o desenvolvimento desse projeto aprendi a utilizar diversas funcionalida
 - Manipular o DOM;
 - Criar o HTML no JavaScript e passar dados dinamicamente;
 - Pegar valores da URL da página;
+
